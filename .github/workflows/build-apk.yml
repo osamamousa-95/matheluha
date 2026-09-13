@@ -39,6 +39,12 @@ jobs:
           npm install --save @capacitor/core@latest @capacitor/android@latest
           npm install --save-dev @capacitor/cli@latest @capacitor/assets@latest
 
+      - name: Use CommonJS config files
+        run: |
+          if [ -f postcss.config.js ]; then mv postcss.config.js postcss.config.cjs; fi
+          if [ -f tailwind.config.js ]; then mv tailwind.config.js tailwind.config.cjs; fi
+          ls *.cjs || true
+
       - name: Build web app
         run: npm run build
 
